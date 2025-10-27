@@ -15,28 +15,51 @@ def szo() -> str:
     return lista[random.randint(0,99)]
 
 def titkos(szo : str) -> str:
-    szoveg = ""
+    szoveg = []
     i = 0
     while i < len(szo):
-        szoveg += "_"
+        szoveg.append("_")
         i+=1
     return szoveg
-def jelenites(szam : int, szo : str, titkos : str) -> str:
+
+def jelenites(szam: list , szo:str, titkos: list) -> str:
+    i=0
+    while i < len(szam):
+        index = szam[i]
+        titkos[index] = szo[index]
+        i+=1
+    szoveg = "".join(titkos)
+    return szoveg
+
+def tippcheck(karakter : str, szo : str):  #tipp, szó bemenet -> int[]
+    tipp = karakter
     szo_ = szo
-    titkos_ = titkos
-    szam_ = szam
-    i = 0
-    szoveg = ""
+    i: int = 0
+    indexek = []
     while i < len(szo_):
-        if i != szam_:
-            szoveg += titkos[i]
-        else:
-            szoveg += szo_[i]
-        i+=1
-    return szoveg
+        if tipp == szo_[i]:
+            indexek.append(i)
+        i += 1
+    if indexek == []:
+        return -1
+    return indexek
+#todo: kigyó megjelenítés, kap egy intet mennyi hibánk van
+#*""""""""""|
 #***********| rossz tipek száma > 11 -> gatya
 #rossz tippeket is tároljuk
 #no error handling
+def hiba_kigyo(hibak : int, maxhiba : int) -> str:
+    max_hiba = maxhiba
+    i=0
+    szoveg = ""
+    while i < max_hiba:
+        if i < hibak:
+            szoveg+="*"
+        else:
+            szoveg+="-"
+        i+=1
+    szoveg+="|"
+    return szoveg
 
 #_____
 #index = random.randint(0, len(szo) -1)
