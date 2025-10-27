@@ -28,6 +28,11 @@ while tipp != "0":
     print(functions.jelenites(segitseg_index, szo, titkos))
     segitsegek.remove(segitseg_index[0])
     tipp = input("Tippelj egy betűt: ")
+    if tipp in tippek:
+        print("Ezt a betűt már próbáltad")
+        tipp = input("Tippelj egy betűt: ")
+        continue
+    tippek.append(tipp)
     index = 0
     while segitsegek != [] and tipp != "0" and hibak < 11:
         if functions.tippcheck(tipp,szo) == -1:
